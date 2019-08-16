@@ -14,38 +14,6 @@ public class AddStrings {
 
     public String addStrings(String num1, String num2) {
         
-        String result = "";
-        int carry = 0;
-        int temp = 0;
-        int i;
-        int j;
-    
-        for (i = num1.length() - 1, j = num2.length() - 1; i >= 0 && j >= 0; i--, j--) {
-            temp = (num1.charAt(i) - '0') + (num2.charAt(j) - '0');
-            result = String.valueOf((temp + carry) % 10).concat(result);
-            carry = (temp + carry) / 10;
-        }
-        
-        temp = i > j ? i : j;
-        num1 = i > j ? num1 : num2;
-        j = temp;
-        for (i = j; i >= 0; i--) {
-            temp = num1.charAt(i) - '0';
-            result = String.valueOf((temp + carry) % 10).concat(result);
-            carry = (temp + carry) / 10;
-        }
-
-        if (carry > 0) {
-            result = "1".concat(result);
-        }
-
-        return result;
-
-    }
-
-    public String addStringsFaster(String num1, String num2) {
-        
-        //String result = "";
         StringBuilder result = new StringBuilder();
         int carry = 0;
         int temp = 0;
@@ -74,4 +42,5 @@ public class AddStrings {
         return result.reverse().toString();
 
     }
+
 }
