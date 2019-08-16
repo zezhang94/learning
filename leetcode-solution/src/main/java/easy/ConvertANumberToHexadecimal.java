@@ -28,14 +28,14 @@ public class ConvertANumberToHexadecimal {
             'c', 'd', 'e', 'f'
         };
 
-        StringBuilder result = new StringBuilder();
-        if (num > 0) {
-            while (num / 16 > 0) {
-                result.append(index[num % 16]);
-                num = num / 16;
-            }
+        byte[] _32bytes = new byte[4];
+
+        for (int i = 0; i < 4; i++) {
+            
         }
-        result.append(num);
+
+        StringBuilder result = new StringBuilder();
+        result.append("");
 
         return result.reverse().toString();
     }
