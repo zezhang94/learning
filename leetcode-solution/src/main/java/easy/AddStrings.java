@@ -14,9 +14,7 @@ public class AddStrings {
 
     public String addStrings(String num1, String num2) {
         
-        num1 = "9133";
-        num2 = "0";
-        String result = new String();
+        String result = "";
         int carry = 0;
         int temp = 0;
         int i;
@@ -24,16 +22,17 @@ public class AddStrings {
     
         for (i = num1.length() - 1, j = num2.length() - 1; i >= 0 && j >= 0; i--, j--) {
             temp = (num1.charAt(i) - '0') + (num2.charAt(j) - '0');
-            result = String.valueOf(temp % 10 + carry).concat(result);
-            carry = temp / 10;
+            result = String.valueOf((temp + carry) % 10).concat(result);
+            carry = (temp + carry) / 10;
         }
         
-        j = i > j ? i : j;
+        temp = i > j ? i : j;
         num1 = i > j ? num1 : num2;
-        for (i = 0; i <= j; i++) {
+        j = temp;
+        for (i = j; i >= 0; i--) {
             temp = num1.charAt(i) - '0';
-            result = String.valueOf(temp % 10 + carry).concat(result);
-            carry = temp / 10;
+            result = String.valueOf((temp + carry) % 10).concat(result);
+            carry = (temp + carry) / 10;
         }
 
         if (carry > 0) {
@@ -41,6 +40,38 @@ public class AddStrings {
         }
 
         return result;
+
+    }
+
+    public String addStringsFaster(String num1, String num2) {
+        
+        //String result = "";
+        StringBuilder result = new StringBuilder();
+        int carry = 0;
+        int temp = 0;
+        int i;
+        int j;
+    
+        for (i = num1.length() - 1, j = num2.length() - 1; i >= 0 && j >= 0; i--, j--) {
+            temp = (num1.charAt(i) - '0') + (num2.charAt(j) - '0');
+            result.append((temp + carry) % 10);
+            carry = (temp + carry) / 10;
+        }
+        
+        temp = i > j ? i : j;
+        num1 = i > j ? num1 : num2;
+        j = temp;
+        for (i = j; i >= 0; i--) {
+            temp = num1.charAt(i) - '0';
+            result.append((temp + carry) % 10);
+            carry = (temp + carry) / 10;
+        }
+
+        if (carry > 0) {
+            result.append(1);
+        }
+
+        return result.reverse().toString();
 
     }
 }
