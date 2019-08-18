@@ -25,7 +25,7 @@ public class AddStrings {
             result.append((temp + carry) % 10);
             carry = (temp + carry) / 10;
         }
-        
+
         temp = i > j ? i : j;
         num1 = i > j ? num1 : num2;
         j = temp;
@@ -40,7 +40,6 @@ public class AddStrings {
         }
 
         return result.reverse().toString();
-
     }
 
 }
