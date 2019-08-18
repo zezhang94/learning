@@ -71,4 +71,19 @@ public class ConvertANumberToHexadecimal {
 
         return result.toString();
     }
+
+    // TODO: add comment
+    public String toHexSimple(int num) {
+        if(num == 0)
+            return "0";
+        String hexMap = "0123456789abcdef";
+        String result = "";
+        int digit = 0;
+        while(num!=0) {
+            digit = num & 15;
+            result = hexMap.charAt(digit) + result;
+            num >>>= 4;
+        }
+        return result;
+    }
 }
