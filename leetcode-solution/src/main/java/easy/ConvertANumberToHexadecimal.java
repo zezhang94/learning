@@ -21,6 +21,10 @@ package easy;
 public class ConvertANumberToHexadecimal {
 
     public String toHex(int num) {
+        if (0 == num) {
+            return "0";
+        }
+
         char[] index = new char[] {
             '0', '1', '2', '3', 
             '4', '5', '6', '7', 
@@ -28,15 +32,43 @@ public class ConvertANumberToHexadecimal {
             'c', 'd', 'e', 'f'
         };
 
-        byte[] _32bytes = new byte[4];
+        int[] _32bits = new int[32];
 
-        for (int i = 0; i < 4; i++) {
+        // Covert int to 32 bits.
+        int temp = num;
+        if (temp < 0)  {
+            temp = -temp;
+        }
+        for (int i = 0; i < 32; i++) {
+            _32bits[i] = temp % 2;
+            temp = temp / 2;
+        }
 
+        // If num is negative, negating num the plus 1.
+        if (num < 0) {
+            int carry = 1;
+            for (int i = 0; i < 32; i++) {
+                temp = (_32bits[i] + 1) % 2;
+                _32bits[i] = (temp + carry) % 2;
+                carry = (temp + carry) / 2;
+            }
         }
 
         StringBuilder result = new StringBuilder();
-        result.append("");
+        boolean isHeadZero = true;
+        for (int i = 7; i >= 0; i--) {
+            temp = 4 * i;
+            temp = _32bits[temp] * 1 + _32bits[temp + 1] * 2 + _32bits[temp + 2] * 4 + _32bits[temp + 3] * 8;
+            if (isHeadZero) {
+                if (temp != 0) {
+                    result.append(index[temp]);
+                    isHeadZero = false;
+                }
+                continue;
+            }
+            result.append(index[temp]);
+        }
 
-        return result.reverse().toString();
+        return result.toString();
     }
 }
