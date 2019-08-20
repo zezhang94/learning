@@ -1,6 +1,7 @@
 package medium;
 
 /*
+ * # 898
  * We have an array A of non-negative integers.
  * For every (contiguous) subarray B = [A[i], A[i+1], ..., A[j]] (with i <= j),
  *  we take the bitwise OR of all the elements in B, obtaining a result A[i] | A[i+1] | ... | A[j].
@@ -35,13 +36,34 @@ public class BitwiseORsOfSubarrays {
 
     public int subarrayBitwiseORs(int[] A) {
 
+        if (1 == A.length) {
+            return 1;
+        }
+
         int[] set = new int[A.length];
 
+        int temp;
+        int j;
+        for (int i = 0; i < A.length; i++) {
+            temp = A[i];
+            if (0 != temp && 1 != temp) {
+                for (j = 0; j < set.length && set[j] != 0; j++) {
+                    if (set[j] == temp) {
+                        break;
+                    }
+                }
+                if (j < set.length && 0 == set[j]) {
+                    set[j] = temp;
+                }
+            }
+        }
 
-
-
+        
 
 
         return 0;
     }
+
+
+
 }
