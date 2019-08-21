@@ -1,5 +1,8 @@
 package medium;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*
  * # 898
  * We have an array A of non-negative integers.
@@ -35,35 +38,26 @@ package medium;
 public class BitwiseORsOfSubarrays {
 
     public int subarrayBitwiseORs(int[] A) {
-
         if (1 == A.length) {
             return 1;
         }
 
-        int[] set = new int[A.length];
+        Set<Integer> resultSet = new HashSet<>();
+        Set<Integer> currentSet = new HashSet<>();
+        currentSet.add(0);
 
-        int temp;
-        int j;
-        for (int i = 0; i < A.length; i++) {
-            temp = A[i];
-            if (0 != temp && 1 != temp) {
-                for (j = 0; j < set.length && set[j] != 0; j++) {
-                    if (set[j] == temp) {
-                        break;
-                    }
-                }
-                if (j < set.length && 0 == set[j]) {
-                    set[j] = temp;
-                }
+        Set<Integer> currentResultSet;
+        for (int a : A) {
+            currentResultSet = new HashSet<>();
+            for (Integer c : currentSet)  {
+                currentResultSet.add(a | c);
             }
+            currentResultSet.add(a);
+            currentSet = currentResultSet;
+
+            resultSet.addAll(currentSet);
         }
 
-        
-
-
-        return 0;
+        return resultSet.size();
     }
-
-
-
 }
