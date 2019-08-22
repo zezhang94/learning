@@ -1,6 +1,7 @@
 package medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,11 +17,8 @@ public class Combinations {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<>();
         if (1 == k) {
-            List<Integer> singletonList;
             for (int i = 1; i <= n; i++) {
-                singletonList = new ArrayList<>();
-                singletonList.add(i);
-                result.add(singletonList);
+                result.add(new ArrayList<>(Arrays.asList(i)));
             }
             return result;
         }
@@ -34,14 +32,10 @@ public class Combinations {
             return result;
         }   
 
-
-        List<List<Integer>> n1k1List = new ArrayList<>();
-        List<List<Integer>> n1kList = new ArrayList<>();
-
-        n1k1List = combine(n - 1, k - 1);
-        n1kList = combine(n - 1, k);
+        List<List<Integer>> n1k1List = combine(n - 1, k - 1);
+        List<List<Integer>> n1kList = combine(n - 1, k);
         for (List<Integer> n1k1 : n1k1List) {
-            ((ArrayList<Integer>) n1k1).add(n);
+            n1k1.add(n);
         }
         result.addAll(n1k1List);
         result.addAll(n1kList);        
