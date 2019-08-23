@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class ConvertANumberToHexadecimalTest {
 
     @Test
-    public void check() {
+    public void test() {
         ConvertANumberToHexadecimal function = new ConvertANumberToHexadecimal();
         assertEquals("1a", function.toHex(26));
         assertEquals("841", function.toHex(2113));

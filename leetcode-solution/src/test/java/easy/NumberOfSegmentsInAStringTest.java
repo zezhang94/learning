@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class NumberOfSegmentsInAStringTest {
 
     @Test
-    void check() {
+    void test() {
         NumberOfSegmentsInAString function = new NumberOfSegmentsInAString();
         assertEquals(5, function.countSegments("Hello, my name is John"));
         assertEquals(0, function.countSegments("                "));

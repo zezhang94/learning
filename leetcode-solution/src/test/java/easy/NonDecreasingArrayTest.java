@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class NonDecreasingArrayTest {
 
     @Test
-    void check() {
+    void test() {
         NonDecreasingArray function = new NonDecreasingArray();
         assertFalse(function.checkPossibility(new int[]{3, 4, 2, 3}));
     }

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class AddStringsTest {
 
     @Test
-    void check() {
+    void test() {
         AddStrings function = new AddStrings();
         assertEquals("9133", function.addStrings("9133", "0"));
         assertEquals("602", function.addStrings("584", "18"));
