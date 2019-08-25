@@ -40,12 +40,15 @@ public class NextGreaterElementII {
         return result;
     }
     
+    // TODO: Find faster solution.
     public int[] faster(int[] nums) {
         if (null == nums || 0 == nums.length) {
             return nums;
         }
+
         int n = nums.length;
         int[] result = new int[n];
+
         int max = nums[0];
         for (int i = 0; i < n; i++) {
             if (nums[i] > max) {
