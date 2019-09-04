@@ -1,7 +1,5 @@
-import java.util.List;
 
 import easy.MinimumIndexSumOfTwoLists;
-import medium.Combinations;
 
 /**
  * Main test.
