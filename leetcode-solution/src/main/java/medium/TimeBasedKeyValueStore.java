@@ -1,5 +1,8 @@
 package medium;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * # 981
  * Create a timebased key-value store class TimeMap, that supports two operations.
@@ -44,18 +47,39 @@ package medium;
 public class TimeBasedKeyValueStore {
 
     private class TimeMap {
-        private String key;
-        private String value;
-        private int timestamp;
+
+        private Map<String, Map<String, Integer>> map;
+        
+        public TimeMap() {
+            this.map = new HashMap<>();
+        }
 
         public void set(String key, String value, int timestamp) {
-            this.key = key;
-            this.value = value;
-            this.timestamp = timestamp;
+            Map<String, Integer> subMap = map.get(key);
+            if (null == subMap) {
+                subMap = new HashMap<>();
+                subMap.put(value, timestamp);
+                map.put(key, subMap);
+                return;
+            }
+            subMap.put(value, timestamp);
         }
         
         public String get(String key, int timestamp) {
-            
+            Map<String, Integer> subMap = map.get(key);
+            if (null == subMap) {
+                return "";
+            }
+
+            int min = 10000000;
+            String result = "";
+            for (Map.Entry<String, Integer> entry : subMap.entrySet()) {
+                if (timestamp - entry.getValue() >= 0 && timestamp - entry.getValue() < min) {
+                    min = timestamp - entry.getValue();
+                    result = entry.getKey(); 
+                }
+            }
+            return result;
         }
         
     }
