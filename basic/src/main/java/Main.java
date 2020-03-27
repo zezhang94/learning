@@ -2,6 +2,8 @@ import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 
+import java.util.LinkedList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,5 +15,8 @@ public class Main {
 
         Stack<Integer> testStack = new Stack<>();
         testStack.push(1);
+
+        java.util.Stack<String> javaStack = new java.util.Stack<>();
+
     }
 }
