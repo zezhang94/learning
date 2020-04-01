@@ -21,6 +21,7 @@ def parity_erase_lowest_set_bit(x):
 def parity_lookup_table(x):
     MASK_SIZE = 16
     BIT_MASK = 0xFFFF
+    PRECOMPUTED_PARITY = []
     return (PRECOMPUTED_PARITY[x >> (3 * MASK_SIZE)] ^
             PRECOMPUTED_PARITY[(x >> (2 * MASK_SIZE)) & BIT_MASK] ^
             PRECOMPUTED_PARITY[(x >> MASK_SIZE) & BIT_MASK] ^
