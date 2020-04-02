@@ -30,4 +30,5 @@ def closest_int_same_bit_count_fast(x):
     first = x & ~ (x - 1)
     if first != 1:
         return x - (first >> 1)
-    first = 
+    first = x ^ (x + 1)
+    return x + (first >> 2) + 1
