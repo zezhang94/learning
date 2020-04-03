@@ -20,6 +20,7 @@ def quotient_by_two_index(x, y):
         x, result, temp_y = x - temp_y, result + k, y
     return result
 
+# Decreasing
 def quotient_fast(x, y):
     result, shift = 0, 32
     temp = y << shift
