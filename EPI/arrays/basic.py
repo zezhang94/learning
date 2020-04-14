@@ -1,0 +1,17 @@
+
+print("------ instantiating ------")
+print("[3, 5, 7, 11]", " - ", [3, 5, 7, 11])
+print("[1] + [0] * 10", " - ", [1] + [0] * 10)
+print("list(range(30))", " - ", list(range(30)))
+print("------ basic operations ------")
+A = [0, 11, 21, 31, 2]
+print("A = [0, 1, 2, 3, 4]")
+print("len(A)", " - ", len(A))
+A.append(42)
+print("A.append(42)", " - ", A)
+A.remove(2)
+print("A.remove(2)", " - ", A)
+A.insert(3, 28)
+print("A.insert(3, 28)", " - ", A)
+print("min(A)", " - ", min(A))
+print("max(A)", " - ", max(A))
