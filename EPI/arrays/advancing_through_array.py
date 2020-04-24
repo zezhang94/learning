@@ -15,12 +15,44 @@ def advancing(A):
     T, R = R, []
   return False
 
+def advancing_on(A):
+  f = 0
+  for i in range(0, len(A)):
+    f = max(f, A[i] + i)
+    if f <= i and i < len(A) - 1:
+      return False
+  return True
+
+def variant(A):
+  f, count, last, step = 0, -1, len(A) - 1, []
+  for i in range(0, len(A)):
+    if f < A[i] + i:
+      f = A[i] + i
+      step.append(f)
+      count += 1
+    if f <= i and i < last:
+      return -1
+    if f >= last:
+      print(step)
+      return count + 1 if i < last else count
+
 if __name__ == "__main__":
     A = [3, 3, 1, 0, 2, 0, 1]
-    print(advancing(A))
+    print(A, advancing_on(A), variant(A))
     A = [3, 2, 0, 0, 2, 0, 1]
-    print(advancing(A))
+    print(A, advancing_on(A), variant(A))
     A = [1, 1, 1, 1, 1, 1, 1]
-    print(advancing(A))
-    A = [0, 12, 1, 1, 1, 1, 1]
-    print(advancing(A))
+    print(A, advancing_on(A), variant(A))
+    A = [1, 12, 1, 1, 1, 1, 1]
+    print(A, advancing_on(A), variant(A))
+    A = [2, 2, 0, 0, 0, 1, 1]
+    print(A, advancing_on(A), variant(A))
+    A = [2, 3, 3, 1, 1, 1, 1]
+    print(A, advancing_on(A), variant(A))
+    A = [2, 3, 3, 1, 0, 0, 1]
+    print(A, advancing_on(A), variant(A))
+    A = [1, 2, 2, 5, 0, 0, 0, 0, 0]
+    print(A, advancing_on(A), variant(A))
+    A = [1, 2, 2, 5, 0, 0, 0, 0, 0, 0]
+    print(A, advancing_on(A), variant(A))
+    
