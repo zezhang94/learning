@@ -23,18 +23,28 @@ def advancing_on(A):
       return False
   return True
 
+#  Write a program to compute the minimum number of steps needed to 
+# advance to the last location.
 def variant(A):
-  f, count, last, step = 0, -1, len(A) - 1, []
+
+  f, count, last, step = 0, 1, len(A) - 1, []
   for i in range(0, len(A)):
     if f < A[i] + i:
       f = A[i] + i
-      step.append(f)
-      count += 1
+      step.append((i, f))
     if f <= i and i < last:
       return -1
     if f >= last:
-      print(step)
-      return count + 1 if i < last else count
+      s, j = step[0], 1      
+      while j < len(step):
+        if s[1] - step[j][0] < 0:  # farthest step from previous step 
+          count += 1
+          s = step[j - 1]
+        else:
+          j += 1
+      return count + 1
+          
+           
 
 if __name__ == "__main__":
     A = [3, 3, 1, 0, 2, 0, 1]
