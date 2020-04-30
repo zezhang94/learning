@@ -32,6 +32,13 @@ def variant1(k, A):
   print(A)
   return c
 
+# Write a program which takes as input a sorted atay A of integers 
+# and a positive integer m, and updates A so that 
+# if x appears m times in A it appears exactly min(2,m) times in A. 
+# The update to A should be performed in one pass, 
+# and no additional storage may be allocated.
+
+
 class Test(unittest.TestCase):
     def test(self):
       A = [1, 1, 2, 2]
