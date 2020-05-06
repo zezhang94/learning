@@ -37,6 +37,8 @@ def variant1(k, A):
 # if x appears m times in A it appears exactly min(2,m) times in A. 
 # The update to A should be performed in one pass, 
 # and no additional storage may be allocated.
+# 
+# todo: solve it
 
 
 class Test(unittest.TestCase):
