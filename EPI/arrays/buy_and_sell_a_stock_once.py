@@ -64,6 +64,8 @@ def twice_better(A):
     profit = max(profit, SELL[i] + BUY[i + 1])
   return profit
 
+# TODO O(n) time and O(1) space
+
 class Test(unittest.TestCase):
     def test(self):
         A = [310, 315, 275, 295, 260, 270, 290, 230, 255, 250]
