@@ -38,7 +38,7 @@ def variant1(k, A):
 # The update to A should be performed in one pass, 
 # and no additional storage may be allocated.
 # 
-# todo: solve it
+# TODO: solve it
 
 
 class Test(unittest.TestCase):

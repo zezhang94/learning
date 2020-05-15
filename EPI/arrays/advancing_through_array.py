@@ -23,7 +23,7 @@ def advancing_on(A):
       return False
   return True
 
-#  Write a program to compute the minimum number of steps needed to 
+# Write a program to compute the minimum number of steps needed to 
 # advance to the last location.
 def variant(A):
 

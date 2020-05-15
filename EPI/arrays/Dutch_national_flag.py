@@ -7,7 +7,6 @@ import copy
 # The order of the subarrays is not important.
 def variant1(A):
   a, b, c = 0, 0, len(A) - 1
-  # Caution: 
   while b <= c:
     if A[b] == 1:
       A[a], A[b] = A[b], A[a]
