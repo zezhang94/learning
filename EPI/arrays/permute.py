@@ -29,15 +29,33 @@ def optimize(A, P):
       value, j = temp, target
   return A
 
-# Given an affay A of integers representing a permutation, 
+# Given an array A of integers representing a permutation, 
 # update A to represent the inverse permutation using only constant additional storage.
 # 
 # An inverse permutation is a permutation in which each number and 
 # the number of the place which it occupies are exchanged.
-
+def variant(A):
+  for i in range(len(A)):
+    A[i] -= 1
+  l = len(A)
+  for i in range(len(A)):
+    value, index = i, A[i]
+    while index >= 0:
+       temp = A[index]
+       A[index] = value - l
+       value = index
+       index = temp
+  for i in range(len(A)):
+    A[i] += (l + 1)
+  return A
 
 class Test(unittest.TestCase):
     def test(self):
-        self.assertListEqual(optimize(["a", "b", "c", "d"]), ["b", "c", "a", "d"])
-        self.assertListEqual(permute(["a", "b", "c", "d"]), ["b", "c", "a", "d"])
-
+        self.assertListEqual(optimize(["a", "b", "c", "d"], [2, 0, 1, 3]), ["b", "c", "a", "d"])
+        self.assertListEqual(permute(["a", "b", "c", "d"], [2, 0, 1, 3]), ["b", "c", "a", "d"])
+    def test_variant(self):
+        self.assertListEqual(variant([1, 2, 3]), [1, 2, 3])
+        self.assertListEqual(variant([3, 8, 5, 10, 9, 4, 6, 1, 7, 2]), [8, 10, 1, 6, 3, 7, 9, 2, 5, 4])
+        self.assertListEqual(variant([3 ,2, 1]), [3, 2, 1])
+        self.assertListEqual(variant([1 ,4, 3, 2]), [1 ,4, 3, 2])
+        self.assertListEqual(variant([2 ,3, 4, 5, 1]), [5, 1, 2, 3, 4])
