@@ -49,6 +49,31 @@ def variant(A):
     A[i] += (l + 1)
   return A
 
+# Write a program that takes as input a permutation, 
+# and returns the next permutation under dictionary ordering. 
+# If the permutation is the last permutation, return the empty array.
+#
+# Hint: observe extreme
+def next(A):
+  start = -1
+  # Find the longest decreasing suffix.
+  for i in range(len(A) - 1, 0, -1):
+    if A[i] > A[i - 1]:
+      start = i - 1
+  if start == -1:
+    return []
+  # Observe that e must be less than some entries in the suffix 
+  # (since the entry immediately after e is greater than e). 
+  # Intuitively, we should swap e with the smallest entry s in the suffix which is larger 
+  # than e so as to minimize the change to the prefix 
+  # (which is defined to be the part of the sequence that appears before the suffix).
+  for i in range(len(A) - 1, start, -1):
+    if A[i] > A[start]:
+      A[i], A[start] = A[start], A[i]
+      break
+  # Reverse suffix.
+  return A[:(start + 1)] + A[:start:-1]
+
 class Test(unittest.TestCase):
     def test(self):
         self.assertListEqual(optimize(["a", "b", "c", "d"], [2, 0, 1, 3]), ["b", "c", "a", "d"])
@@ -59,3 +84,6 @@ class Test(unittest.TestCase):
         self.assertListEqual(variant([3 ,2, 1]), [3, 2, 1])
         self.assertListEqual(variant([1 ,4, 3, 2]), [1 ,4, 3, 2])
         self.assertListEqual(variant([2 ,3, 4, 5, 1]), [5, 1, 2, 3, 4])
+    def test_next(self):
+        self.assertListEqual(next([1, 0, 3, 2]), [1, 2, 0, 3])
+    
