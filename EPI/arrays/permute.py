@@ -1,5 +1,7 @@
 import copy
 import unittest
+import math
+import random
 # A permutation can be specified by an array P, where P[] represents the location of the element 
 # at i in the permutation. For example, the aray (2,0,1,3) represents the permutation that maps the
 # element at location 0 to location 2, the element at location 1 to location 0, 
@@ -60,6 +62,7 @@ def next(A):
   for i in range(len(A) - 1, 0, -1):
     if A[i] > A[i - 1]:
       start = i - 1
+      break
   if start == -1:
     return []
   # Observe that e must be less than some entries in the suffix 
@@ -74,6 +77,39 @@ def next(A):
   # Reverse suffix.
   return A[:(start + 1)] + A[:start:-1]
 
+# Compute the k-th permutation under dictionary ordering, 
+# starting from the identity permutation 
+# (which is the first permutation in dictionary ordering).
+def k_th_permutation(n, k):
+  i, k = 1, k - 1 
+  R, F, fac = [], [x for x in range(1, n + 1)], math.factorial(n - i)
+  while k // fac or k % fac:
+    v = k // fac
+    R.append(F[v])
+    k = k % fac
+    F = F[:v] + F[v + 1:]
+    i += 1
+    fac = math.factorial(n - i)
+  return R + F 
+
+# Given a permutation p, return the permutation corresponding to the 
+# previous permutation of p under dictionary ordering.
+def previous(A):
+  start = -1
+  for i in range(len(A) - 1, 0, -1):
+    if A[i] < A[i - 1]:
+      start = i - 1
+      break
+  if start == -1:
+    return []
+  for i in range(len(A) - 1, start, -1):
+    if A[i] < A[start]:
+      A[i], A[start] = A[start], A[i]
+      break
+  return A[:start + 1] + A[:start:-1]
+
+
+
 class Test(unittest.TestCase):
     def test(self):
         self.assertListEqual(optimize(["a", "b", "c", "d"], [2, 0, 1, 3]), ["b", "c", "a", "d"])
@@ -86,4 +122,28 @@ class Test(unittest.TestCase):
         self.assertListEqual(variant([2 ,3, 4, 5, 1]), [5, 1, 2, 3, 4])
     def test_next(self):
         self.assertListEqual(next([1, 0, 3, 2]), [1, 2, 0, 3])
+        self.assertListEqual(next([4, 5, 3, 2, 1, 0]), [5, 0, 1, 2, 3, 4])
+        self.assertListEqual(next([5, 4, 3, 2, 1, 0]), [])
+        for i in range(0, 100):
+            current = random.randint(1, math.factorial(6) + 1)
+            A = k_th_permutation(6, current)
+            if current == math.factorial(6):
+                self.assertListEqual(next(A), [])
+            else:
+                self.assertListEqual(next(A), k_th_permutation(6, current + 1))      
+    def test_previous(self):
+        for i in range(0, 100):
+            current = random.randint(1, math.factorial(6) + 1)
+            A = k_th_permutation(6, current)
+            if current == 1:
+                self.assertListEqual(previous(A), [])
+            else:
+                self.assertListEqual(previous(A), k_th_permutation(6, current - 1))
+        self.assertListEqual(previous([0, 1, 2, 3]), [])
+        self.assertListEqual(previous([0, 1]), [])
+
+if __name__ == "__main__":
+    for i in range(1, math.factorial(6) + 1):
+      A = k_th_permutation(6, i)
+      print(A)
     
