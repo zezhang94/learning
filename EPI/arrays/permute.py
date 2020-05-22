@@ -2,13 +2,13 @@ import copy
 import unittest
 import math
 import random
+
 # A permutation can be specified by an array P, where P[] represents the location of the element 
 # at i in the permutation. For example, the aray (2,0,1,3) represents the permutation that maps the
 # element at location 0 to location 2, the element at location 1 to location 0, 
 # the element at location 2 to location 1, and keep the element at location 3 unchanged. 
 # A permutation can be applied to an array to reorder the array. 
 # For example, the permutation (2,0,1,3) applied to A = (a,b,c,d) yields the array (b,c,a,d).
-
 def permute(A, P):
   F = [True] * len(A)
   for i in range(len(A)):
@@ -88,8 +88,8 @@ def k_th_permutation(n, k):
     R.append(F[v])
     k = k % fac
     F = F[:v] + F[v + 1:]
+    fac //= n - i
     i += 1
-    fac = math.factorial(n - i)
   return R + F 
 
 # Given a permutation p, return the permutation corresponding to the 
@@ -107,7 +107,6 @@ def previous(A):
       A[i], A[start] = A[start], A[i]
       break
   return A[:start + 1] + A[:start:-1]
-
 
 
 class Test(unittest.TestCase):
