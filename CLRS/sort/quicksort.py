@@ -11,9 +11,14 @@ def partition(A, p, r):
     A[r], A[i + 1] = A[i + 1], A[r]
     return i + 1
 
+def randomized_partition(A, p, r):
+    i = random.randint(p, r)
+    A[i], A[r] = A[r], A[i]
+    return partition(A, p, r)
+
 def quicksort(A, p, r):
     if p < r:
-        q = partition(A, p, r)
+        q = randomized_partition(A, p, r)
         quicksort(A, p, q - 1)
         quicksort(A, q + 1, r)
 
