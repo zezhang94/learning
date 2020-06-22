@@ -1,6 +1,6 @@
 import random
 
-# Eelements of array are in range 0 to 1.
+# Eelements of array are in range 0 to k.
 def counting_sort(A, k):
     R = [-1] * len(A)
     C = [0] * (k + 1)
