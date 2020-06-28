@@ -22,7 +22,7 @@ def partition(A, p, r):
       A[i], A[j] = A[j], A[i]
     i += 1
   pivot = j + 1
-  A[pivot], A[r] = pivot_value, A[pivot]
+  A[pivot], A[r] = A[r], A[pivot]
   return pivot
 
 def randomized_partition(A, p, r):
