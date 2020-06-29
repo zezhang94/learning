@@ -6,13 +6,23 @@ def ith_order_statistic(A, p, r, i):
   if p == r:
     return A[p]
   q = randomized_partition(A, p, r)
-  k = q - p + 1
-  if i == k:
-    return A[i]
-  if i < k:
+  if i - 1 < q:
     return ith_order_statistic(A, p, q - 1, i)
-  else:
-    return ith_order_statistic(A, q + 1, r, i - k)    
+  if i - 1 > q:
+    return ith_order_statistic(A, q + 1, r, i)
+  return A[i - 1]
+
+def ith_order_statistic_iterative(A, p, r, i):
+    if p == r:
+      return A[p]
+    q = randomized_partition(A, p, r)
+    while q != i - 1:
+      if i - 1 < q:
+        p, r = p, q - 1
+      elif i - 1 > q:
+        p, r = q + 1, r 
+      q = randomized_partition(A, p, r)
+    return A[i - 1]
 
 def partition(A, p, r):
   i, j, pivot_value = p, p - 1, A[r]
@@ -32,9 +42,13 @@ def randomized_partition(A, p, r):
 
 class Test(unittest.TestCase):
     def test(self):
-        for i in range(0, 1000):
+        for i in range(0, 10000):
             A = random.sample(range(0, 100), 15)
             B = sorted(A)
             j = random.randint(1, len(A))
-            print(j, A, B)
             self.assertEqual(ith_order_statistic(A, 0, len(A) - 1, j), B[j - 1])
+        for i in range(0, 10000):
+            A = random.sample(range(0, 100), 15)
+            B = sorted(A)
+            j = random.randint(1, len(A))
+            self.assertEqual(ith_order_statistic_iterative(A, 0, len(A) - 1, j), B[j - 1])
