@@ -93,6 +93,10 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="node.c"/>
+    <File Name="binary_search_tree.c"/>
+    <File Name="binary_search_tree.h"/>
+    <File Name="node.h"/>
     <File Name="main.c"/>
   </VirtualDirectory>
 </CodeLite_Project>
