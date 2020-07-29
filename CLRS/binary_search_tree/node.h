@@ -9,6 +9,8 @@ struct Node {
 	struct Node *parent;
 	struct Node *left;
 	struct Node *right;
+	// successor
+	struct Node *succ;
 };
 
 struct Node *new_node(int x);

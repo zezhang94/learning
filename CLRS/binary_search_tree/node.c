@@ -7,5 +7,6 @@ struct Node *new_node(int x) {
 	node->parent = NULL;
 	node->left = NULL;
 	node->right = NULL;
+	node->succ = NULL;
 	return node;
 }
