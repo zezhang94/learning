@@ -3,6 +3,8 @@
 #include <time.h>
 #include <node.h>
 #include <binary_search_tree.h>
+#include <consts.h>
+#include <binary_tree.h>
 
 int const data_range = 100;
 int const tree_size = 10;
@@ -11,20 +13,20 @@ int main(int argc, char **argv)
 {
 	srand(time(NULL));
 	printf("Build start.\n");
-	struct Node *T = NULL;
+	struct BinaryTree *binaryTree = new_binary_tree();
 	// for test
 	struct Node *node_arr[tree_size];
 	int count = 1;
 	printf("Source sequence:\n");
 	for (int index = 0; index != tree_size; ++index) {
 		int key = rand() % data_range;
-		struct Node *node = new_node(key);
+		struct Node *node = new_node(key, Red, binaryTree->nil);
 		printf("%p---%d ", (void*) node, key);
 		if (!(count++ % 4)) {
 			printf("\n");
 		}
 		node_arr[index] = node;
-		T = insert(T, node);
+		insert(binaryTree, node);
 	}
 	if (count % 4 != 1) {
 		printf("\n");
@@ -32,30 +34,30 @@ int main(int argc, char **argv)
 	printf("Build end.\n\n");
 	
 	printf("Iterative inorder walk tree without stack.\n");
-	iterative_inorder_tree_walk(T);
+	iterative_inorder_tree_walk(binaryTree, binaryTree->root);
 	printf("\n\n");
 	
 	printf("Recursive inorder walk tree.\n");
-	recursive_inorder_tree_walk(T);
+	recursive_inorder_tree_walk(binaryTree, binaryTree->root);
 	printf("\n\n");
 	
 	int target = rand() % data_range;
-	struct Node *target_node = iterative_search(T, target);
+	struct Node *target_node = iterative_search(binaryTree, binaryTree->root, target);
 	printf("Search target: %d\n", target);
 	printf("Iterative search result: [%p] --- [%d]\n", (void*) target_node, target_node != NULL ? target_node->key : -1);
-	target_node = recursive_search(T, target);
+	target_node = recursive_search(binaryTree, binaryTree->root, target);
 	printf("Recursive search result: [%p] --- [%d]\n", (void*) target_node, target_node != NULL ? target_node->key : -1);
 	printf("\n");
 	
-	struct Node *min = minimum(T);
+	struct Node *min = minimum(binaryTree, binaryTree->root);
 	printf("Minimun: %d\n", min->key);
-	struct Node *max = maximum(T);
+	struct Node *max = maximum(binaryTree, binaryTree->root);
 	printf("Maximun: %d\n", max->key);
 	printf("\n");
 		
 	for (int index = 0; index != tree_size; ++index) {
-		struct Node *successor_node = successor(node_arr[index]);
-		struct Node *predecessor_node = predecessor(node_arr[index]);
+		struct Node *successor_node = successor(binaryTree, node_arr[index]);
+		struct Node *predecessor_node = predecessor(binaryTree, node_arr[index]);
 		printf("Node [%p] --- [%d], successor [%p] --- [%d], predecessor [%p] --- [%d]\n", 
 			(void*) node_arr[index], node_arr[index]->key,
 			(void*) successor_node, successor_node != NULL ? successor_node->key : -1,
@@ -66,9 +68,9 @@ int main(int argc, char **argv)
 	
 	for (int index = 0; index != tree_size; ++index) {
 		printf("Deletion target: [%p] --- [%d]\n", (void*) node_arr[index], node_arr[index]->key);
-		T = deletion(T, node_arr[index]);
+		deletion(binaryTree, node_arr[index]);
 		printf("After deletion: ");
-		recursive_inorder_tree_walk(T);
+		recursive_inorder_tree_walk(binaryTree, binaryTree->root);
 		printf("\n");
 	}
 	printf("\n");

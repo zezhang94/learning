@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=yorkzhang
-Date                   :=29/07/2020
+Date                   :=10/08/2020
 CodeLitePath           :=D:/CodeLite
 LinkerName             :=gcc
 SharedObjectLinkerName :=gcc -shared -fPIC
@@ -62,7 +62,7 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=D:\CodeLite
-Objects0=../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(ObjectSuffix) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/node.c$(ObjectSuffix) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(ObjectSuffix) 
+Objects0=../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(ObjectSuffix) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/node.c$(ObjectSuffix) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(ObjectSuffix) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(ObjectSuffix) 
 
 
 
@@ -93,13 +93,13 @@ PreBuild:
 ##
 ## Objects
 ##
-../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(ObjectSuffix): main.c ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "F:/Projects/Github/learning/CLRS/binary_search_tree/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
-../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(DependSuffix): main.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(ObjectSuffix) -MF../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(DependSuffix) -MM main.c
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(ObjectSuffix): binary_search_tree.c ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "F:/Projects/Github/learning/CLRS/binary_search_tree/binary_search_tree.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/binary_search_tree.c$(ObjectSuffix) $(IncludePath)
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(DependSuffix): binary_search_tree.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(ObjectSuffix) -MF../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(DependSuffix) -MM binary_search_tree.c
 
-../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(PreprocessSuffix): main.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(PreprocessSuffix) main.c
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(PreprocessSuffix): binary_search_tree.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(PreprocessSuffix) binary_search_tree.c
 
 ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/node.c$(ObjectSuffix): node.c ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/node.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "F:/Projects/Github/learning/CLRS/binary_search_tree/node.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/node.c$(ObjectSuffix) $(IncludePath)
@@ -109,13 +109,21 @@ PreBuild:
 ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/node.c$(PreprocessSuffix): node.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/node.c$(PreprocessSuffix) node.c
 
-../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(ObjectSuffix): binary_search_tree.c ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "F:/Projects/Github/learning/CLRS/binary_search_tree/binary_search_tree.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/binary_search_tree.c$(ObjectSuffix) $(IncludePath)
-../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(DependSuffix): binary_search_tree.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(ObjectSuffix) -MF../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(DependSuffix) -MM binary_search_tree.c
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(ObjectSuffix): binary_tree.c ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "F:/Projects/Github/learning/CLRS/binary_search_tree/binary_tree.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/binary_tree.c$(ObjectSuffix) $(IncludePath)
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(DependSuffix): binary_tree.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(ObjectSuffix) -MF../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(DependSuffix) -MM binary_tree.c
 
-../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(PreprocessSuffix): binary_search_tree.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_search_tree.c$(PreprocessSuffix) binary_search_tree.c
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(PreprocessSuffix): binary_tree.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/binary_tree.c$(PreprocessSuffix) binary_tree.c
+
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(ObjectSuffix): main.c ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "F:/Projects/Github/learning/CLRS/binary_search_tree/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(DependSuffix): main.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(ObjectSuffix) -MF../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(DependSuffix) -MM main.c
+
+../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(PreprocessSuffix): main.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree/main.c$(PreprocessSuffix) main.c
 
 
 -include ../../../../CodeLite/simple/build-$(ConfigurationName)/__/__/Github/learning/CLRS/binary_search_tree//*$(DependSuffix)
