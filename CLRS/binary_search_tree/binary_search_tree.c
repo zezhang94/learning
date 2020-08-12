@@ -290,12 +290,18 @@ void rb_inser_fixup(struct BinaryTree *binaryTree, struct Node *x) {
 	
 	while (x->parent->color == Red) {
 		struct Node *uncle = find_uncle(x);
+		// case-1: uncle is RED
+		// convert to case-2 or case-3
+		// grandparent must be BLACK, downgrade BLACK to maintain property 4
 		if (uncle->color == Red) {
 			x->parent->color = Black;
 			uncle->color = Black;
 			x->parent->parent->color = Red;
 			x = x->parent->parent;
 		} else {
+			// case-2: x and x's parent are on the different side
+			// make them on the same side, covert to case-3
+			// otherwise the tree will violate red-black propertry
 			if (x == x->parent->left && x->parent == x->parent->parent->right) {
 				right_rotate(binaryTree, x->parent);
 				x = x->right;
@@ -304,6 +310,7 @@ void rb_inser_fixup(struct BinaryTree *binaryTree, struct Node *x) {
 				x = x->left;
 			}
 			
+			// case-3: x and x's parent are on the same side
 			x->parent->color = Black;
 			x->parent->parent->color = Red;
 			if (x == x->parent->left) {
