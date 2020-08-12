@@ -197,3 +197,129 @@ void deletion(struct BinaryTree *binaryTree, struct Node *target) {
 	}
 	free(target);
 }
+
+void left_rotate(struct BinaryTree *binaryTree, struct Node *target) {
+	struct Node *right = target->right;
+	
+	if (right == binaryTree->nil) {
+		return;
+	}
+	
+	if (target->parent == binaryTree->nil) {
+		binaryTree->root = right;
+	} else if (target == target->parent->left) {
+		target->parent->left = right;
+	} else {
+		target->parent->right = right;
+	}
+	right->parent = target->parent;
+	
+	target->right = right->left;
+	if (right->left != binaryTree->nil) {
+		right->left->parent = target;
+	}
+	right->left = target;
+	target->parent = right;
+}
+
+void right_rotate(struct BinaryTree *binaryTree, struct Node *target) {
+	struct Node *left = target->left;
+	
+	if (left == binaryTree->nil) {
+		return;
+	}
+	
+	if (target->parent == binaryTree->nil) {
+		binaryTree->root = left;
+	} else if (target == target->parent->right) {
+		target->parent->right = left;
+	} else {
+		target->parent->left = left;
+	}
+	left->parent = target->parent;
+	
+	target->left = left->right;
+	if (left->right != binaryTree->nil) {
+		left->right->parent = target;
+	}
+	left->right = target;
+	target->parent = left;
+}
+
+void rb_insert(struct BinaryTree *binaryTree, struct Node *x) {
+	
+	x->left = binaryTree->nil;
+	x->right = binaryTree->nil;
+	
+	if (binaryTree->root == binaryTree->nil) {
+		binaryTree->root = x;
+		x->color = Black;
+		x->parent = binaryTree->nil;
+		return;
+	}
+	
+	struct Node *current = binaryTree->root;
+	struct Node *pre = binaryTree->nil;
+	while (current != binaryTree->nil) {
+		pre = current;
+		if (x->key > current->key) {
+			current = current->right;
+		} else if (x->key < current->key) {
+			current = current->left;
+		} else {
+			if (current->flag > 0) {
+				current = current->left;
+			} else {
+				current = current->right;
+			}
+			pre->flag = 0 - pre->flag;
+		}
+	}
+	
+	if (x->key < pre->key || x->key == pre->key && pre->flag > 0) {
+		pre->left = x;
+	} else if (x->key > pre->key || x->key == pre->key && pre->flag < 0) {
+		pre->right = x;
+	}
+	x->parent = pre;
+	
+	rb_inser_fixup(binaryTree, x);
+}
+
+void rb_inser_fixup(struct BinaryTree *binaryTree, struct Node *x) {
+	
+	while (x->parent->color == Red) {
+		struct Node *uncle = find_uncle(x);
+		if (uncle->color == Red) {
+			x->parent->color = Black;
+			uncle->color = Black;
+			x->parent->parent->color = Red;
+			x = x->parent->parent;
+		} else {
+			if (x == x->parent->left && x->parent == x->parent->parent->right) {
+				right_rotate(binaryTree, x->parent);
+				x = x->right;
+			} else if (x == x->parent->right && x->parent == x->parent->parent->left) {
+				left_rotate(binaryTree, x->parent);
+				x = x->left;
+			}
+			
+			x->parent->color = Black;
+			x->parent->parent->color = Red;
+			if (x == x->parent->left) {
+				right_rotate(binaryTree, x->parent->parent);
+			} else {
+				left_rotate(binaryTree, x->parent->parent);
+			}
+		}
+	}
+	binaryTree->root->color = Black;
+}
+
+struct Node *find_uncle(struct Node *x) {
+	if (x->parent == x->parent->parent->right) {
+		return x->parent->parent->left;
+    } else {
+		return x->parent->parent->right;
+	}
+}
