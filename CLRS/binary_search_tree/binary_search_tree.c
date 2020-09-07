@@ -171,9 +171,7 @@ void transplant(struct BinaryTree *binaryTree, struct Node *replacement, struct 
 	} else {
 		replaced->parent->right = replacement;
 	}
-	if (replacement != binaryTree->nil) {
-		replacement->parent = replaced->parent;
-	}
+	replacement->parent = replaced->parent;
 }
 
 void deletion(struct BinaryTree *binaryTree, struct Node *target) {
@@ -244,6 +242,14 @@ void right_rotate(struct BinaryTree *binaryTree, struct Node *target) {
 	}
 	left->right = target;
 	target->parent = left;
+}
+
+struct Node *find_uncle(struct Node *x) {
+	if (x->parent == x->parent->parent->right) {
+		return x->parent->parent->left;
+    } else {
+		return x->parent->parent->right;
+	}
 }
 
 void rb_insert(struct BinaryTree *binaryTree, struct Node *x) {
@@ -323,10 +329,27 @@ void rb_inser_fixup(struct BinaryTree *binaryTree, struct Node *x) {
 	binaryTree->root->color = Black;
 }
 
-struct Node *find_uncle(struct Node *x) {
-	if (x->parent == x->parent->parent->right) {
-		return x->parent->parent->left;
-    } else {
-		return x->parent->parent->right;
+// TODO: Add color record and fix-up.
+void rb_deletion(struct BinaryTree *binaryTree, struct Node *target) {
+	if (target->right == binaryTree->nil) {
+		transplant(binaryTree, target->left, target);
+	} else if (target->left == binaryTree->nil) {
+		transplant(binaryTree, target->right, target);
+	} else {
+		struct Node* succ = successor(binaryTree, target);
+		if (succ->parent != target) {
+			transplant(binaryTree, succ->right, succ);
+			succ->right = target->right;
+			succ->right->parent = succ;
+		}
+		succ->left = target->left;
+		succ->left->parent = succ;
+		transplant(binaryTree, succ, target);
 	}
+	free(target);
 }
+
+void rb_deletion_fixup(struct BinaryTree *binaryTree, struct Node *x) {
+
+}
+

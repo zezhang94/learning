@@ -10,8 +10,8 @@ int const data_range = 100;
 int const tree_size = 10;
 
 int main(int argc, char **argv) {
-	//normal_banary_search_tree();
-	rb_tree();
+	normal_banary_search_tree();
+	//rb_tree();
 	return 0;
 }
 
@@ -74,17 +74,12 @@ void normal_banary_search_tree() {
 	
 	for (int index = 0; index != tree_size; ++index) {
 		printf("Deletion target: [%p] --- [%d]\n", (void*) node_arr[index], node_arr[index]->key);
-		deletion(binaryTree, node_arr[index]);
+		rb_deletion(binaryTree, node_arr[index]);
 		printf("After deletion: ");
 		recursive_inorder_tree_walk(binaryTree, binaryTree->root);
 		printf("\n");
 	}
 	printf("\n");
-	for (int index = 0; index != tree_size; ++index) {
-		printf("%p ", (void*) node_arr[index]);
-	}
-	printf("\n");
-	
 }
 
 void rb_tree() {
@@ -123,4 +118,5 @@ void rb_tree() {
 			node->color == Black ? "B" : "R", node->key);
 		printf("\n");
 	}
+	
 }

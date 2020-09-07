@@ -18,8 +18,9 @@ struct Node *predecessor(struct BinaryTree *binaryTree, struct Node *target);
 void deletion(struct BinaryTree *binaryTree, struct Node *target);
 void left_rotate(struct BinaryTree *binaryTree, struct Node *target);
 void right_rotate(struct BinaryTree *binaryTree, struct Node *target);
-
-void rb_insert(struct BinaryTree *binaryTree, struct Node *x);
 struct Node *find_uncle(struct Node *x);
+// red-black tree
+void rb_insert(struct BinaryTree *binaryTree, struct Node *x);
+void rb_deletion(struct BinaryTree *binaryTree, struct Node *target);
 
 #endif
