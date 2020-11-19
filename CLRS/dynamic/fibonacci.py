@@ -8,7 +8,7 @@ def fibonacci(n):
     return 1
   return fibonacci(n - 1) + fibonacci(n - 2)
 
-def dynamic_On_fibonacci(n):
+def dynamic_fibonacci(n):
   if n == 0:
     return 0
   if n == 1:
@@ -24,4 +24,4 @@ class test(unittest.TestCase):
     def test(self):
         for i in range(0, 100):
             n = random.randint(0, 30)
-            self.assertEqual(fibonacci(n), dynamic_On_fibonacci(n))
+            self.assertEqual(fibonacci(n), dynamic_fibonacci(n))
