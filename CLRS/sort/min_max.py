@@ -8,10 +8,10 @@ def min_max(A):
     return (A[0], A[0])
 
   result, i = (0, 0), -1
-  if len(A) % 2 == 0:
+  if len(A) % 2 == 0: # have even elements 
     result = (min(A[0], A[1]), max(A[0], A[1]))
     i = 2
-  else:
+  else: # have odd elements
     result = (A[0], A[0])
     i = 1
   s, l = None, None

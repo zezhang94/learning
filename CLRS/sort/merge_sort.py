@@ -1,4 +1,14 @@
 def merge(A, p, q, r):
+  """Merger adjacent sorted sequence
+
+  p <= q <= r
+
+  Args:
+    A: sequence to sort
+    p: start index
+    q: divide index
+    r: end index
+  """
   B = [None] * (r - p + 1)
   i, j, count = p, q + 1, 0
   while i <= q and j <= r:

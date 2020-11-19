@@ -1,8 +1,10 @@
 import random
 
-# Eelements of array are in range 0 to k.
 def counting_sort(A, k):
-    R = [-1] * len(A)
+    """
+    Eelements of array are in range 0 to k.
+    """
+    R = [-1] * len(A) # result array
     C = [0] * (k + 1)
     # number of elements equal to i
     for i in range(0, len(A)):
@@ -10,9 +12,9 @@ def counting_sort(A, k):
     # number of elements less or equal to i
     for i in range(1, len(C)):
         C[i] += C[i - 1]
-    # unstable
+    # unstable: reverse
     # for i in range(0, len(A)):
-    # unstable
+    # stable
     for i in range(len(A) - 1, -1, -1):
         R[C[A[i]] - 1]= A[i]
         C[A[i]] -= 1

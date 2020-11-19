@@ -3,6 +3,15 @@ import unittest
 import copy
 
 def ith_order_statistic(A, p, r, i):
+  """Find i-th element in array.
+
+  Args:
+    A: array to find
+    p: start index
+    r: end index plus 1
+    i: i-th (form 1)
+  """
+
   if p == r:
     return A[p]
   q = randomized_partition(A, p, r)
