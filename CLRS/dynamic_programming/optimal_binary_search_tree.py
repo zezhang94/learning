@@ -26,9 +26,9 @@ def optimal_BST(P, Q):
                         R[i][j] = r
     return (E, W, R)
 
-def construct_optimal_BST(R, i, j, last_r):
+def construct_optimal_BST(R, i, j, last_root):
 
-    parent = "k" + str(last_r)
+    parent = "k" + str(last_root)
     
     if i > j and i >= len(R):
         print("d" + str(j) + " is the right child of " + parent)
@@ -37,9 +37,9 @@ def construct_optimal_BST(R, i, j, last_r):
     r = R[i][j]
     child = "k" + str(r) if i <= j else "d" + str(j)
         
-    if last_r == 0:
+    if last_root == 0:
         print("k" + str(r) + " is root")
-    elif j < last_r:
+    elif j < last_root:
         print(child + " is the left child of " + parent)
     else:
         print(child + " is the right child of " + parent)
