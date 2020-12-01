@@ -1,1 +1,9 @@
--IF:\Projects\Github\learning\CLRS\binary_search_tree
+-Ic:\MinGW\lib\gcc\mingw32\9.2.0\include\c++
+-Ic:\MinGW\lib\gcc\mingw32\9.2.0\include\c++\mingw32
+-Ic:\MinGW\lib\gcc\mingw32\9.2.0\include\c++\backward
+-Ic:\MinGW\lib\gcc\mingw32\9.2.0\include
+-Ic:\MinGW\include
+-Ic:\MinGW\lib\gcc\mingw32\9.2.0\include-fixed
+-IE:\Projects\learning\CLRS\binary_search_tree
+-target
+i686-pc-windows-gnu
