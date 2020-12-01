@@ -22,18 +22,18 @@ class Heap:
             A[i], A[largest] = A[largest], A[i]
             self.max_heapify_recursive(A, largest)
 
-    def max_heapify_iterative(self, i):
-        largest = i
+    def max_heapify_iterative(self, index):
+        largestIndex = index
         while True:
-            l = self.left(largest)
-            r = self.right(largest)
-            if l < self.heap_size and A[l] > A[largest]:
-                largest = l
-            if r < self.heap_size and A[r] > A[largest]:
-                largest = r
-            if largest != i:
-                A[i], A[largest] = A[largest], A[i]
-                i = largest
+            l = self.left(largestIndex)
+            r = self.right(largestIndex)
+            if l < self.heap_size and A[l] > A[largestIndex]:
+                largestIndex = l
+            if r < self.heap_size and A[r] > A[largestIndex]:
+                largestIndex = r
+            if largestIndex != index:
+                A[index], A[largestIndex] = A[largestIndex], A[index]
+                index = largestIndex
             else:
                 return
 

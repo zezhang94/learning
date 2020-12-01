@@ -12,8 +12,8 @@ def partition(A, p, r):
     return i + 1
 
 def randomized_partition(A, p, r):
-    i = random.randint(p, r)
-    A[i], A[r] = A[r], A[i]
+    i = random.randint(p, r) # random choose pivot
+    A[i], A[r] = A[r], A[i] # exchang pivot to the last location
     return partition(A, p, r)
 
 def quicksort(A, p, r):

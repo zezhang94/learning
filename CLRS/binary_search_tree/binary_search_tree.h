@@ -3,16 +3,24 @@
 
 #include <node.h>
 #include <stdio.h>
+#include <consts.h>
+#include <binary_tree.h>
 
-struct Node *insert(struct Node *T, struct Node *x);
-void recursive_inorder_tree_walk(struct Node *start);
-void iterative_inorder_tree_walk(struct Node *start);
-struct Node *recursive_search(struct Node *start, int key);
-struct Node *iterative_search(struct Node *start, int key);
-struct Node *minimum(struct Node *start);
-struct Node *maximum(struct Node *start);
-struct Node *successor(struct Node *target);
-struct Node *predecessor(struct Node *target);
-struct Node *deletion(struct Node *T, struct Node *target);
+void insert(struct BinaryTree *binaryTree, struct Node *x);
+void recursive_inorder_tree_walk(struct BinaryTree *binaryTree, struct Node *start);
+void iterative_inorder_tree_walk(struct BinaryTree *binaryTree, struct Node *start);
+struct Node *recursive_search(struct BinaryTree *binaryTree, struct Node *start, int key);
+struct Node *iterative_search(struct BinaryTree *binaryTree, struct Node *start, int key);
+struct Node *minimum(struct BinaryTree *binaryTree, struct Node *start);
+struct Node *maximum(struct BinaryTree *binaryTree, struct Node *start);
+struct Node *successor(struct BinaryTree *binaryTree, struct Node *target);
+struct Node *predecessor(struct BinaryTree *binaryTree, struct Node *target);
+void deletion(struct BinaryTree *binaryTree, struct Node *target);
+void left_rotate(struct BinaryTree *binaryTree, struct Node *target);
+void right_rotate(struct BinaryTree *binaryTree, struct Node *target);
+struct Node *find_uncle(struct Node *x);
+// red-black tree
+void rb_insert(struct BinaryTree *binaryTree, struct Node *x);
+void rb_deletion(struct BinaryTree *binaryTree, struct Node *target);
 
 #endif

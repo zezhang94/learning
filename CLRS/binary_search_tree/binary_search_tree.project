@@ -93,6 +93,9 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="consts.h"/>
+    <File Name="binary_tree.c"/>
+    <File Name="binary_tree.h"/>
     <File Name="node.c"/>
     <File Name="binary_search_tree.c"/>
     <File Name="binary_search_tree.h"/>
