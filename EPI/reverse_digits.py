@@ -1,0 +1,1 @@
+# Write a program which takes an integer and returns the integer corresponding to the digits of the input written in reverse order.
