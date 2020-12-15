@@ -26,3 +26,6 @@ __pycache__/
 *.mk
 *.project
 compile_flags.txt
+
+# windows
+*.exe
