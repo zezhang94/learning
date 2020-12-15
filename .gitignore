@@ -21,3 +21,8 @@ target/
 
 # Python
 __pycache__/
+
+# CodeLite
+*.mk
+*.project
+compile_flags.txt
