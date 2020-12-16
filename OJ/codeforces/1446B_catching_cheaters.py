@@ -14,6 +14,8 @@ Solution:
         dp[i - 1][j - 1] + 2   if A[i] = A[j]
         max(dp[i - 1][j], dp[i][j - 1]) - 1   if A[i] != A[j]
     }
+Comment:
+    How to define dp table ?
 '''
 
 input()

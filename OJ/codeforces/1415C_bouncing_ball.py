@@ -1,5 +1,4 @@
 '''
-    1415C
     Definition:
         a1, a2, a3, ..., an = 0 or 1
         p: first land index
@@ -35,6 +34,8 @@
         10110011000
         4 3
         10
+    Comment:
+        Dp as an auxiliary.
 '''
 
 import sys
