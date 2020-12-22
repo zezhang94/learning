@@ -1,3 +1,7 @@
+/*
+ * Tip: data type range
+*/
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -11,11 +15,11 @@ int main() {
         cin >> n >> k;
         mid = n % 2 ? n / 2 + 1 : n / 2;
         //cout << "mid: " << mid  << "\n";
-        int start = n * k - (n % 2 ? mid * k : (mid + 1) * k) + 1;
+        long start = n * k - (n % 2 ? mid * k : (mid + 1) * k) + 1;
         //cout << "start: " << start  << "\n";
-        long sum = 0;
-        int count = 1;
-        int i;
+        unsigned long long sum = 0;
+        unsigned long long count = 1;
+        long i;
         while (count < start) {
             cin >> i;
             ++count;
@@ -23,8 +27,8 @@ int main() {
         
         //cout << "start count: " << count  << "\n";
 
-        int step = 0;
-        int factor = n <= 2 ? n : n - 1;
+        long step = 0;
+        long factor = (n - mid) + 1;
         while (count <= n * k) {
             cin >> i;
             if (step % factor == 0) {
