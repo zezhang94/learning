@@ -95,6 +95,7 @@ void solve() {
 
     /*
         Tip: Using std::sort when sorting is needed. It has high performance.
+        Tip: How to transfer array iterator to std::sort.   
     */
     sort(s, s + n, cmp);
 
