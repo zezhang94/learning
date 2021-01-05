@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-class Solver {
+class SampleInJDK {
     final int N;
     final float[][] data;
     final CyclicBarrier barrier;
@@ -29,7 +29,7 @@ class Solver {
         }
     }
 
-    public Solver(float[][] matrix) throws InterruptedException {
+    public SampleInJDK(float[][] matrix) throws InterruptedException {
         data = matrix;
         N = matrix.length;
         Runnable barrierAction = new Runnable() {
