@@ -1,7 +1,6 @@
 package problems;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
@@ -33,6 +32,9 @@ class CyclicWorker implements Runnable {
     private static List<CountDownLatch> latchA;
     private static List<CountDownLatch> latchB;
 
+    /**
+     * Todo: Not a good solution.
+     */
     private static final int N = 7;
     static {
         latchA = new ArrayList<>();
