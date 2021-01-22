@@ -19,9 +19,35 @@ def bfs(candidates, target):
 
   return ans
 
-print(bfs([2, 3, 6, 7], 7))
-print(bfs([2, 3, 5], 8))
-print(bfs([2], 1))
-print(bfs([1], 1))
-print(bfs([1], 2))
-      
+def dfsSolution(candidates, target):
+  def dfs(candidates, target, start, stack, ans):
+    if target == 0:
+      ans.append(stack[:])
+      return
+    
+    for i in range(start, len(candidates)):
+      if candidates[i] > target:
+          return 
+      stack.append(candidates[i])
+      dfs(candidates, target - candidates[i], i, stack, ans)
+      stack.pop()
+
+  candidates.sort()
+  ans = []
+  dfs(candidates, target, 0, [], ans)
+  return ans
+
+print(dfsSolution([2, 3, 6, 7], 7))
+print(dfsSolution([2, 3, 5], 8))
+print(dfsSolution([2], 1))
+print(dfsSolution([1], 1))
+print(dfsSolution([1], 2))
+print(dfsSolution([10, 1, 2, 7, 6, 1, 5], 8))
+print(dfsSolution(
+    [1, 1, 1, 1, 1, 
+     1, 1, 1, 1, 1, 
+     1, 1, 1, 1, 1, 
+     1, 1, 1, 1, 1, 
+     1, 1, 1, 1, 1], 27
+    )
+)
