@@ -1,4 +1,4 @@
-def dfsSolution(S):
+def slowSolution(S):
   def dfs(S, start, stack, ans):
     if len(S) == len(stack):
       ans.append(stack)
@@ -21,21 +21,25 @@ def dfsSolution(S):
   dfs(S, 0, "", ans)
   return ans
 
-print(dfsSolution("a1b2"))
+print(slowSolution("a1b2"))
 
-def letterCasePermutation(S: str):
-  ans = [S]
-  for i in range(len(S)):
-    copy = ans
-    if S[i].islower():
-      for s in copy:
-        s[i] = S[i].upper()
-      ans += copy
-    elif S[i].isupper():
-      for s in copy:
-        s[i] = S[i].lower()
-      ans += copy
+def optimizing(S: str):
+  def dfs(s, i, ans):
+    if i == len(s):
+      ans.append("".join(s))
+      return 
+    dfs(s, i + 1, ans)
+    if s[i].isalpha():
+      # Tip: ^ (1 << 5), toggle between lowercase and uppercase
+      s[i] = chr(ord(s[i]) ^ (1 << 5)) 
+      dfs(s, i + 1, ans)
+      s[i] = chr(ord(s[i]) ^ (1 << 5))    
+
+  # Tip: avoid creating new space
+  s = [c for c in S]
+  ans = []
+  dfs(s, 0, ans)
   return ans
     
-print(letterCasePermutation("a1b2"))
+print(optimizing("a1b2"))
 
