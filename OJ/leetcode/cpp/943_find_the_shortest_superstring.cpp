@@ -1,45 +1,34 @@
 #include <vector>
 #include <string>
-#include <stack>
 #include <algorithm>
 #include <iostream>
+#include <climits>
 using namespace std;
 
-// last test case TLE
+int min_l;
 void dfs(int depth, const vector<string>& A, const vector<vector<int>>& table,
-         stack<int>& s, vector<bool>& used, stack<int>& index_ans, int cur_l, int *min_l) {
-    if (cur_l > *min_l) {
+         vector<int>& s, int used, vector<int>& index_ans, int cur_l) {
+    if (cur_l >= min_l) {
         return;
     }
 
     if (depth == A.size()) {
-        if (cur_l <= *min_l) {
-            *min_l = cur_l;
-            index_ans = s;
-        }
+        min_l = cur_l;
+        index_ans = s;
         return;
     }
 
     for (int i = 0; i < A.size(); ++i) {
-        if (!used[i]) {
-            int diff;
-            if (depth == 0) {
-                diff = A[i].size();
-            } else {
-                diff = A[i].size() - table[s.top()][i];
-            }
-            cur_l += diff;
-            used[i] = true;
-            s.push(i);
-            dfs(depth + 1, A, table, s, used, index_ans, cur_l, min_l);
-            s.pop();
-            used[i] = false;
-            cur_l -= diff;
+        if (!(used & (1 << i))) {
+            int diff = depth ? A[i].size() - table[s[depth - 1]][i] : A[i].size();
+            s[depth] = i;
+            dfs(depth + 1, A, table, s, used | (1 << i), index_ans, cur_l + diff);
         }
     }
 }
 
-string shortestSuperstring(vector<string>& A) {
+// on the edge of TLE (:-
+string dfsSolution(vector<string>& A) {
     vector<vector<int>> table(A.size(), vector<int>(A.size()));
     int n = A.size();
     for (int i = 0; i < n; ++i) {
@@ -57,34 +46,23 @@ string shortestSuperstring(vector<string>& A) {
         }
     }
 
-    vector<bool> used(n, false);
-    stack<int> index_ans;
-    stack<int> s;
-    int zero = 0;
-    int *min_l = &zero;
-    for (int i = 0; i < n; ++i) {
-        *min_l += A[i].size();
-    }
-    dfs(0, A, table, s, used, index_ans, 0, min_l);
-    
-    int pre = index_ans.top();
-    string ans = A[pre];
-    index_ans.pop();
-    int cur;
-    while (!index_ans.empty()) {
-        cur = index_ans.top();
-        ans = A[cur].substr(0, A[cur].size() - table[cur][pre]) + ans;
-        pre = cur;
-        index_ans.pop();
+    vector<int> s(n);
+    vector<int> index_ans;
+    min_l = INT_MAX;
+    dfs(0, A, table, s, 0, index_ans, 0);
+    string ans = A[index_ans[0]];
+    for (int i = 1; i < n; ++i) {
+        ans += A[index_ans[i]].substr(table[index_ans[i - 1]][index_ans[i]]);
     }
     return ans;
 }
 
-
-
 int main() {
     vector<string> A {"catg","ctaagt","gcta","ttca","atgcatc"};
-    cout << shortestSuperstring(A) << '\n';
-    cout << "gctaagttcatgcatc\n"; 
+    cout << dfsSolution(A) << '\n';
+    cout << "gctaagttcatgcatc\n";
+    vector<string> B {"we", "love", "pho"};
+    cout << dfsSolution(B) << '\n';
+    cout << "welovepho\n";
     return 0;
 }
