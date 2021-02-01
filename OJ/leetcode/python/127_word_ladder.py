@@ -1,4 +1,5 @@
 from typing import List 
+import collections
 
 class TLESolution:
     def generateGraph(self, wordList: List[str], wordLength: int) -> List[List[bool]]:
@@ -45,24 +46,25 @@ class TLESolution:
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         wordLength = len(beginWord)
-        wordDict = {key : 0 for key in wordList}
-        wordDict[beginWord] = 0
+        wordDict = set(wordList)
         if endWord not in wordDict:
             return 0
 
         alphabet = [str(chr(ord('a') + i)) for i in range(26)]
-        queue = [beginWord]
+        queue = collections.deque()
+        queue.appendleft((beginWord, 0))
+        if beginWord in wordDict:
+            wordDict.remove(beginWord)
         while len(queue) > 0:
-            u = queue.pop()
-            parent_depth = wordDict.pop(u)
+            word, depth = queue.pop()
             for wi in range(wordLength):
                 for ch in alphabet:
-                    newWord = u[:wi] + ch + u[(wi + 1):]
-                    if newWord in wordDict and newWord not in queue:
-                        wordDict[newWord] = parent_depth + 1
+                    newWord = word[:wi] + ch + word[(wi + 1):]
+                    if newWord in wordDict:
+                        wordDict.remove(newWord)
                         if newWord == endWord:
-                            return wordDict[newWord] + 1
-                        queue.insert(0, newWord)
+                            return depth + 2
+                        queue.appendleft((newWord, depth + 1))
         return 0
 
 solution = Solution() 
