@@ -21,7 +21,8 @@ class Solution:
         return minimum
 
     def bfs(self, i: int, j: int, inf: int, distance: List[List[int]], matrix: List[List[int]]) -> int:
-
+        m, n = len(matrix), len(matrix[0])
+        record = [-1 for _ in range()]
         return 0
 
 
