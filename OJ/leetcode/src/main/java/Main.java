@@ -1,28 +1,22 @@
 
 import easy.MinimumIndexSumOfTwoLists;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Main test.
  */
 public class Main {
 
     public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(Arrays.asList(3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6));
+        //Collections.shuffle(list);
 
-        /*
-        Combinations function = new Combinations();
-        List<List<Integer>> result = function.combine(5, 3);
-        for (List<Integer> list : result) {
-            for (Integer item : list) {
-                System.out.print(item + ", ");
-            }
-            System.out.println();
-        }
-        */
-
-        MinimumIndexSumOfTwoLists f = new MinimumIndexSumOfTwoLists();
-        String[] result = f.findRestaurant(
-            new String[] {"Shogun", "Tapioca Express", "Burger King", "KFC"}, 
-            new String[] {"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"}
-        );
+        KthLargestElementInAnArray_215 f = new KthLargestElementInAnArray_215();
+        int ans = f.findKthLargest(list.stream().mapToInt(i -> i).toArray(), list.size());
+        System.out.println(ans);
     }
 }
