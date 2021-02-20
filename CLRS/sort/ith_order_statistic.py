@@ -24,13 +24,13 @@ def ith_order_statistic(A, p, r, i):
 def ith_order_statistic_iterative(A, p, r, i):
     if p == r:
       return A[p]
-    q = randomized_partition(A, p, r)
-    while q != i - 1:
-      if i - 1 < q:
-        p, r = p, q - 1
-      elif i - 1 > q:
-        p, r = q + 1, r 
-      q = randomized_partition(A, p, r)
+    pivot = randomized_partition(A, p, r)
+    while pivot != i - 1:
+      if i - 1 < pivot:
+        p, r = p, pivot - 1
+      elif i - 1 > pivot:
+        p, r = pivot + 1, r 
+      pivot = randomized_partition(A, p, r)
     return A[i - 1]
 
 def partition(A, p, r):
