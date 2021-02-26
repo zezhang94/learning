@@ -1,22 +1,21 @@
-
-import easy.MinimumIndexSumOfTwoLists;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Main test.
  */
 public class Main {
 
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>(Arrays.asList(3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6));
-        //Collections.shuffle(list);
+        PartitionToKEqualSumSubsets_698 solution = new PartitionToKEqualSumSubsets_698();
 
-        KthLargestElementInAnArray_215 f = new KthLargestElementInAnArray_215();
-        int ans = f.findKthLargest(list.stream().mapToInt(i -> i).toArray(), list.size());
-        System.out.println(ans);
+        int[] nums = new int[]{4, 3, 2, 3, 5, 2, 1};
+        int k = 4;
+        System.out.println(solution.canPartitionKSubsets(nums, k));
+
+        nums = new int[]{4, 5, 3, 2, 5, 5, 1, 3, 5, 5, 5, 5, 5, 2, 5};
+        k = 12;
+        System.out.println(solution.canPartitionKSubsets(nums, k));
+
+        nums = new int[]{2, 2, 2, 2, 3, 4, 5};
+        k = 4;
+        System.out.println(solution.canPartitionKSubsets(nums, k));
     }
 }
