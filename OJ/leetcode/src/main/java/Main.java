@@ -4,16 +4,12 @@ import java.util.Arrays;
  * Main test.
  */
 public class Main {
-
     public static void main(String[] args) {
-        DecodeWays_91 solution = new DecodeWays_91();
+        DifferentWaysToAddParentheses_241 solution = new DifferentWaysToAddParentheses_241();
 
-        System.out.println(solution.numDecodings("21"));
-        System.out.println(solution.numDecodings("210"));
-        System.out.println(solution.numDecodings("2101"));
-        System.out.println(solution.numDecodings("301"));
-        System.out.println(solution.numDecodings("27"));
-
+        System.out.println(solution.diffWaysToCompute("2-1-1").toString());
+        System.out.println(solution.diffWaysToCompute("2*3-4*5").toString());
+        System.out.println(solution.diffWaysToCompute("0").toString());
 
     }
 
@@ -23,5 +19,4 @@ public class Main {
             System.out.println(Arrays.toString(line));
         }
     }
-
 }
