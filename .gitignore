@@ -13,7 +13,6 @@
 .DS_Store
 
 # Maven
-log/
 target/
 
 # VS Code
@@ -34,4 +33,11 @@ compile_flags.txt
 out/
 
 # self-defined
-temp.* 
+temp.*
+
+# C++
+*.out 
+
+# log
+log/
+logs/
